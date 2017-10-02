@@ -4,11 +4,16 @@ $mode = trim(fread($fs, "1024"));
 if($mode == "") $mode = "dev";
 fclose($fs);
 
-echo $mode;
+//echo $mode;
 error_reporting(E_ALL); 
 ini_set('display_errors',1); 
 
-$con=mysqli_connect("csci150.c9g7nukf2ffx.us-west-1.rds.amazonaws.com","root","1234qwer","CSCI150"); 
+if($mode == "dev") {
+  $con = mysqli_connect("localhost:3306","root","1234qwer","csci150");
+}else {
+  $con = mysqli_connect("csci150.c9g7nukf2ffx.us-west-1.rds.amazonaws.com","root","1234qwer","CSCI150"); 
+}
+
 if (!$con)  
 { 
    echo "MySQL Connection Error : ";
@@ -18,7 +23,6 @@ if (!$con)
 
 mysqli_set_charset($con,"utf8");  
 
-//POST 값을 읽어온다.
 $name=isset($_POST['name']) ? $_POST['name'] : '';  
 $email=isset($_POST['email']) ? $_POST['email'] : '';  
 $pswd=isset($_POST['pswd']) ? $_POST['pswd'] : '';  
@@ -33,9 +37,6 @@ if ($name !="" and $email !="" and $pswd !="" ){
   }else {
       $sql = "SELECT PASSWORD('{$pswd}')";
       $res = mysqli_query($con, $sql);
-      var_dump($res);
-
-      exit;
 
       $sql = 
         "INSERT INTO 

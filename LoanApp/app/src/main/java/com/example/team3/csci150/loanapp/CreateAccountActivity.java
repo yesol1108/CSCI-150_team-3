@@ -79,7 +79,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             String email = (String)params[1];
             String pswd = (String)params[2];
 
-            String server = "http://52.53.157.82/CSCI150/appdata.php";
+            String server = "http://52.53.157.82/csci150/php/appdata.php";
             String postParams = "name=" + name + "&email=" + email + "&pswd=" + pswd;
 
             try {
