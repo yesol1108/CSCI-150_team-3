@@ -1,0 +1,6 @@
+### Gradle ###
+.gradle
+/build/
+
+###text ###
+php/manager.txt

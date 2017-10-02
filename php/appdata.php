@@ -1,4 +1,10 @@
 <?php  
+$fs = fopen(dirname(__FILE__)."/manager.txt", "r");
+$mode = trim(fread($fs, "1024"));
+if($mode == "") $mode = "dev";
+fclose($fs);
+
+echo $mode;
 error_reporting(E_ALL); 
 ini_set('display_errors',1); 
 
