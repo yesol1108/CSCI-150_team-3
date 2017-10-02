@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    TextView result;
+    TextView result,link_login;
     EditText input_name,input_email,input_pwd,input_pwdck;
     String name,email,pwd,pwdck;
 
@@ -35,6 +35,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         input_email = (EditText) findViewById(R.id.input_email);
         input_pwd = (EditText) findViewById(R.id.input_pwd);
         input_pwdck = (EditText) findViewById(R.id.input_pwdck);
+        link_login = (TextView) findViewById(R.id.link_login);
     }
 
     public void create_account(View view) {
