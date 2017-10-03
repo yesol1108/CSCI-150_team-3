@@ -41,7 +41,7 @@
         android:textSize="30sp"
         tools:layout_editor_absoluteX="297dp"
         tools:layout_editor_absoluteY="4dp"
-        app:layout_constraintLeft_toRightOf="parent"/>
+        app:layout_constraintRight_toLeftOf="parent"/>
     />
 
 </android.support.constraint.ConstraintLayout>
