@@ -39,11 +39,10 @@ if($email != "" and $pswd != "") {
     }
   }
   else{
-    echo "ERROR - SQL : ";
-    echo mysqli_error($con);
+    echo "Wrong email or password!";
   }
 } else {
-  echo "please input data";
+  echo "Please input data";
 }
 
 mysqli_close($con);
