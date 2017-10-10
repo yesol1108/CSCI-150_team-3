@@ -30,13 +30,20 @@ $pswd=isset($_POST['pswd']) ? $_POST['pswd'] : '';
 $query = "SELECT * FROM user_db
          WHERE email = '{$email}' AND pswd = '{$pswd}'";
 $res = mysqli_query($con, $query);
+$res_num = mysqli_num_rows($res);
 
-if($res){
-  echo "SUCCESS";
-}
-else{
-  echo "ERROR - SQL : ";
-  echo mysqli_error($con);
+if($email != "" and $pswd != "") {
+  if($res_num> 0){
+    while($row = mysqli_fetch_assoc($res)) {
+      echo $row["name"];
+    }
+  }
+  else{
+    echo "ERROR - SQL : ";
+    echo mysqli_error($con);
+  }
+} else {
+  echo "please input data";
 }
 
 mysqli_close($con);

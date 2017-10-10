@@ -1,6 +1,7 @@
 package com.example.team3.csci150.loanapp;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -32,16 +34,22 @@ public class LoginFragment extends TopLevelFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-
+        result = (TextView) view.findViewById(R.id.result);
         input_email = (EditText) view.findViewById(R.id.input_email);
         input_pwd = (EditText) view.findViewById(R.id.input_pwd);
 
         view.findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //login success
-                LoginProcess lp = new LoginProcess();
-                lp.execute("http://52.53.157.82/csci150/php/login.php",email,pwd);
+                email = input_email.getText().toString();
+                pwd = input_pwd.getText().toString();
+
+                if(email.equals("") && pwd.equals("")) {
+                    Toast.makeText(getActivity(), "Please enter email and password", Toast.LENGTH_SHORT).show();
+                }else {
+                    LoginProcess lp = new LoginProcess();
+                    lp.execute("http://52.53.157.82/csci150/php/login.php",email,pwd);
+                }
             }
         });
 
@@ -65,7 +73,9 @@ public class LoginFragment extends TopLevelFragment {
             createProgress.dismiss();
 //            result.setText(s);
             if(s.equals("SUCCESS")) {
-                getMainActivity().resetToplevel(LoginFragment.newInstance());
+                Intent i = new Intent(getActivity(), GroupActivity.class);
+                i.putExtra("USER", s);
+                startActivity(i);
             }
             Log.d("RESPONSE", "POST response - " + result);
         }
