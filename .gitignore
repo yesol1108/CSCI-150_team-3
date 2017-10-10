@@ -1,5 +1,8 @@
+###### Android Studio generated #####
 .gradle
-/build/
+/local.properties
+/.idea/workspace.xml
+/build
 
 # Ignore Gradle GUI config
 gradle-app.setting
