@@ -35,7 +35,7 @@ $res_num = mysqli_num_rows($res);
 if($email != "" and $pswd != "") {
   if($res_num> 0){
     while($row = mysqli_fetch_assoc($res)) {
-      echo $row["name"];
+      echo "SUCCESS";
     }
   }
   else{
