@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    Boolean loginChecked;
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -33,10 +39,20 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getFragmentManager().addOnBackStackChangedListener(backStackChangedListener());
-        //first init
-        //if first time user
-       initToplevel(CreateAccountFragment.newInstance());
+        pref = this.getSharedPreferences("login", 0);
+        editor = pref.edit();
+        loginChecked = pref.getBoolean("autoLogin", false);
+
+        if(loginChecked) {
+            Intent i = new Intent(this, GroupActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        }else{
+            //first init
+            //if first time user
+            getFragmentManager().addOnBackStackChangedListener(backStackChangedListener());
+            initToplevel(CreateAccountFragment.newInstance());
+        }
     }
 
     private FragmentManager.OnBackStackChangedListener backStackChangedListener() {
