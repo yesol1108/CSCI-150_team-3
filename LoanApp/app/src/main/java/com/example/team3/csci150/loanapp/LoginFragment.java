@@ -76,6 +76,8 @@ public class LoginFragment extends TopLevelFragment {
                 Intent i = new Intent(getActivity(), GroupActivity.class);
                 i.putExtra("USER", s);
                 startActivity(i);
+            }else{
+                result.setText(s);
             }
             Log.d("RESPONSE", "POST response - " + result);
         }
