@@ -12,7 +12,7 @@ ini_set('display_errors',1);
 if($mode == "dev") {
   $con = mysqli_connect("localhost:3306","root","1234qwer","csci150");
 }else {
-  $con = mysqli_connect("csci150.c9g7nukf2ffx.us-west-1.rds.amazonaws.com","root","1234qwer","CSCI150");
+  $con = mysqli_connect("csci150se.c9g7nukf2ffx.us-west-1.rds.amazonaws.com","intrSE_3","tkfkdgo11","SPLITTR");
 }
 
 if (!$con)
@@ -28,34 +28,42 @@ $name=isset($_POST['name']) ? $_POST['name'] : '';
 $email=isset($_POST['email']) ? $_POST['email'] : '';
 $pswd=isset($_POST['pswd']) ? $_POST['pswd'] : '';
 
-$query = "SELECT * FROM user_db WHERE email = '{$email}'";
+$query = "SELECT * FROM user WHERE email = '{$email}'";
 $res = mysqli_query($con, $query);
-$res_num = mysqli_num_rows($res);
 
 if ($name !="" and $email !="" and $pswd !="" ){
-  if($res_num != 0) {
+  if(mysqli_num_rows($res) > 0) {
     echo "Email Already Exist!";
   }else {
-      $sql = "SELECT PASSWORD('{$pswd}')";
-      $res = mysqli_query($con, $sql);
+    $sql = "SELECT PASSWORD('{$pswd}') as userpw";
+    $res = mysqli_query($con, $sql);
+    $row = mysqli_fetch_array($res); //{$row["userpw"]}
 
-      $sql =
-        "INSERT INTO
-          user_db(name, email, pswd)
-          VALUES('$name', '$email', '$pswd')";
+    $sql = "
+INSERT INTO user(
+    name
+    ,email
+    ,pswd
+    ,insertedAt
+) VALUES(
+    '{$name}'
+    , '{$email}'
+    , '{$pswd}'
+    , NOW()
+  )
+  "
+  ;
 
-      $res = mysqli_query($con, $sql);
+    $res = mysqli_query($con, $sql);
 
-      if($res){
-         echo "SUCCESS";
-      }
-      else{
-         echo "ERROR - SQL : ";
-         echo mysqli_error($con);
-      }
-
+    if($res){
+      echo "SUCCESS";
+    }else {
+      echo "ERROR - SQL : ";
+      echo mysqli_error($con);
+    }
   }
-} else {
+}else {
     echo "Please input the data ";
 }
 

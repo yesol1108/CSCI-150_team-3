@@ -2,6 +2,7 @@ package com.example.team3.csci150.loanapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +28,11 @@ public class LoginFragment extends TopLevelFragment {
     EditText input_email, input_pwd;
     String email,pwd;
     TextView result;
+    Boolean loginChecked;
+    CheckBox checkBox;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
 
     public static LoginFragment newInstance() {
         return new LoginFragment();
@@ -37,6 +45,23 @@ public class LoginFragment extends TopLevelFragment {
         result = (TextView) view.findViewById(R.id.result);
         input_email = (EditText) view.findViewById(R.id.input_email);
         input_pwd = (EditText) view.findViewById(R.id.input_pwd);
+        checkBox = (CheckBox) view.findViewById(R.id.checkBox);
+
+        pref = getMainActivity().getSharedPreferences("login", 0);
+        editor = pref.edit();
+        loginChecked = pref.getBoolean("autoLogin", false);
+
+        //if autologin checked, get input
+        if(pref.getBoolean("autoLogin", false)) {
+            input_email.setText(pref.getString("id", ""));
+            input_pwd.setText(pref.getString("pw", ""));
+            checkBox.setChecked(true);
+        }else {
+            email = input_email.getText().toString();
+            pwd = input_pwd.getText().toString();
+            LoginProcess lp = new LoginProcess();
+            lp.execute("http://52.53.157.82/csci150/php/login.php",email,pwd);
+        }
 
         view.findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +74,19 @@ public class LoginFragment extends TopLevelFragment {
                 }else {
                     LoginProcess lp = new LoginProcess();
                     lp.execute("http://52.53.157.82/csci150/php/login.php",email,pwd);
+                }
+            }
+        });
+
+        ((CheckBox) view.findViewById(R.id.checkBox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    loginChecked = true;
+                } else {
+                    loginChecked = false;
+                    editor.clear();
+                    editor.commit();
                 }
             }
         });
@@ -73,9 +111,16 @@ public class LoginFragment extends TopLevelFragment {
             createProgress.dismiss();
 //            result.setText(s);
             if(s.equals("SUCCESS")) {
-                Intent i = new Intent(getActivity(), GroupActivity.class);
-                i.putExtra("USER", s);
-                startActivity(i);
+                if (loginChecked) {
+                    editor.putString("id",email);
+                    editor.putString("pw", pwd);
+                    editor.putBoolean("autoLogin", true);
+                    editor.commit();
+                }
+                Intent i = new Intent(getMainActivity(), GroupActivity.class);
+                editor.putString("name", s);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                getMainActivity().startActivity(i);
             }else{
                 result.setText(s);
             }
