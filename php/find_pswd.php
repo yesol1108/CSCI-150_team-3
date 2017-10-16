@@ -52,6 +52,7 @@ if($email != "") {
 	// Always set content-type when sending HTML email
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+	$headers .= 'From: <webmaster@splittr.com>' . "\r\n";
 
 	$message = "
 	<html>
@@ -63,7 +64,7 @@ if($email != "") {
 				and <b>do not forget</b> to change the password.
 			</p>
 			<p> Your temporary password is below.</p>
-			<p> ".$random_string."</p>
+			<p><i> ".$random_string."<i></p>
 			</table>
 		</body>
 	</html>
