@@ -70,9 +70,8 @@ if($email != "") {
 	</html>
 	";
 
-	$fullmsg = "From: webmaster@splittr.com\nTo: {$email}\nSubject: {$message}";
-
-	mail($email, "Your temporary password", $message, $headers);
+	$from = "noreply@splittr.com"
+	mail($email, "Your temporary password", $message, $headers, "-f" . $from);
   }
 }else {
   echo "Please input data";
