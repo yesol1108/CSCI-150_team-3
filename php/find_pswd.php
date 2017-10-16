@@ -70,7 +70,10 @@ if($email != "") {
 	</html>
 	";
 
-	mail($email, "Your temporary password", $message, $headers);
+	$fullmsg = "From: webmaster@splittr.com\nTo: {$email}\nSubject: {$message}";
+
+	//mail($email, "Your temporary password", $message, $headers);
+	exec("echo $fullmsg | /usr/sbin/sendmail -f webmaster@splittr.com {$email}");
   }
 }else {
   echo "Please input data";
