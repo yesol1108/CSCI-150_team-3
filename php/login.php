@@ -24,49 +24,22 @@ if (!$con)
 
 mysqli_set_charset($con,"utf8");
 
-$name=isset($_POST['name']) ? $_POST['name'] : '';
 $email=isset($_POST['email']) ? $_POST['email'] : '';
 $pswd=isset($_POST['pswd']) ? $_POST['pswd'] : '';
 
-$query = "SELECT * FROM user WHERE email = '{$email}'";
+$query = "SELECT * FROM user
+         WHERE email = '{$email}' AND pswd = '{$pswd}'";
 $res = mysqli_query($con, $query);
 
-if ($name !="" and $email !="" and $pswd !="" ){
-  if(mysqli_num_rows($res) > 0) {
-    echo "Email Already Exist!";
+if($email != "" and $pswd != "") {
+  if(mysqli_num_rows($res) == 0) {
+    echo "Wrong email or password!";
   }else {
-    $sql = "SELECT PASSWORD('{$pswd}') as userpw";
-    $res = mysqli_query($con, $sql);
-    $row = mysqli_fetch_array($res); //{$row["userpw"]}
-
-    $sql = "
-INSERT INTO user(
-    name
-    ,email
-    ,pswd
-    ,insertedAt
-) VALUES(
-    '{$name}'
-    , '{$email}'
-    , '{$pswd}'
-    , NOW()
-  )
-  "
-  ;
-
-    $res = mysqli_query($con, $sql);
-
-    if($res){
-      echo "SUCCESS";
-    }else {
-      echo "ERROR - SQL : ";
-      echo mysqli_error($con);
-    }
+    while($row = mysqli_fetch_assoc($res)) echo "SUCCESS";
   }
 }else {
-    echo "Please input the data ";
+  echo "Please input data";
 }
-
 
 mysqli_close($con);
 ?>
@@ -82,7 +55,6 @@ if (!$android){
    <body>
 
       <form action="<?php $_PHP_SELF ?>" method="POST">
-         Name: <input type = "text" name = "name" />
          Email: <input type = "text" name = "email" />
          Password: <input type = "text" name = "pswd" />
          <input type = "submit" />
