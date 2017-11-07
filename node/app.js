@@ -13,12 +13,12 @@ require('dotenv').config({path: './config/'+(process.env.NODE_ENV || 'developmen
 
 // db connection
 var connectionInfo = {
-    host : process.env.CSCI_DB_HOST,
-    user : process.env.CSCI_DB_USER,
-    password : process.env.CSCI_DB_PASSWORD,
-    database : process.env.CSCI_DB_DATABASE,
-    connectionLimit : process.env.CSCI_DB_CONNECTION_LIMIT,
-    charset: process.env.CSCI_DB_CHARSET
+    host : "csci150se.c9g7nukf2ffx.us-west-1.rds.amazonaws.com",
+    user : "intrSE_3",
+    password : "tkfkdgo11",
+    database : "SPLITTR",
+    // connectionLimit : process.env.CSCI_DB_CONNECTION_LIMIT,
+    // charset: process.env.CSCI_DB_CHARSET
 }
 var connection = mysql.createPool(connectionInfo);
 global.pool = connection;
