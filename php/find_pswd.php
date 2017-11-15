@@ -70,7 +70,7 @@ if($email != "") {
 	</html>
 	";
 
-	$from = "noreply@splittr.com"
+	$from = "noreply@splittr.com";
 	mail($email, "Your temporary password", $message, $headers, "-f" . $from);
   }
 }else {
