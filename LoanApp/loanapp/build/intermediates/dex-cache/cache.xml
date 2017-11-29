@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/Anant/Desktop/saleh/loanapp/sample/build/intermediates/exploded-aar/loanapp/library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="5b1d4bab96fc98dfc27afa26df9ea72df5e213fd">
+        <dex dex="/Users/Anant/Desktop/saleh/loanapp/sample/build/intermediates/pre-dexed/debug/loanapp-library-unspecified_a201ec457f42719fe7dda1bb84a2bc0fa18ec273.jar" />
+    </item>
+
+</items>

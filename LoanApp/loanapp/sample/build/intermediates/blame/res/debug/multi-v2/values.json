@@ -1,0 +1,45 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\Owner\\Documents\\PayPal final\\loanapp\\sample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Owner\\Documents\\PayPal final\\loanapp\\sample\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "6,15",
+                        "startColumns": "4,4",
+                        "startOffsets": "186,510",
+                        "endLines": "12,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "472,665"
+                    },
+                    "to": {
+                        "startLines": "3,10",
+                        "startColumns": "4,4",
+                        "startOffsets": "100,391",
+                        "endLines": "9,12",
+                        "endColumns": "12,12",
+                        "endOffsets": "386,546"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Owner\\Documents\\PayPal final\\loanapp\\sample\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "17",
+                        "endColumns": "44",
+                        "endOffsets": "57"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "44",
+                        "endOffsets": "95"
+                    }
+                }
+            ]
+        }
+    ]
+}
