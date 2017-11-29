@@ -3,9 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PaypaPayment.iml" filepath="$PROJECT_DIR$/PaypaPayment.iml" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f201402fa5b7e3fd3c9550d72290e712d8dbc130
       <module fileurl="file://$PROJECT_DIR$/PaypaPayment.iml" filepath="$PROJECT_DIR$/PaypaPayment.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+>>>>>>> f201402fa5b7e3fd3c9550d72290e712d8dbc130
     </modules>
   </component>
 </project>

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="generated">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/LoanApp/build/generated/mockable-android-25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/LoanApp/build/generated/mockable-Google-Inc.-Google-APIs-24.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

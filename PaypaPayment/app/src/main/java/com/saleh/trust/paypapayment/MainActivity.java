@@ -13,7 +13,6 @@ import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 
-
 import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         m_response = (TextView) findViewById(R.id.response);
+
         m_configuration = new PayPalConfiguration()
                 .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // sandbox for test, production for real
                 .clientId(m_paypalClientId);
